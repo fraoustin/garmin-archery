@@ -22,7 +22,6 @@ class mainView extends WatchUi.View {
     // Update the view
     function onUpdate(dc as Dc) as Void {
         // Call the parent onUpdate function to redraw the layout
-        System.println("mainView Update");
         View.onUpdate(dc);
     }
 

@@ -6,4 +6,5 @@
     <string id="StartSignal">Signal de départ</string>
     <string id="EndSignal">Signal de fin</string>
     <string id="WarningSignal">Signal d'alerte</string>
+    <string id="NoTimer">Sans Chrono</string>
 </strings>

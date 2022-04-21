@@ -8,10 +8,6 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
     function initialize() {
         BehaviorDelegate.initialize();
     }
-
-    function onMenu() as Boolean {
-        return true;
-    }
     
     function onPreviousPage() {
         var menu = new WatchUi.Menu2({:title=>Rez.Strings.AppName});
@@ -47,11 +43,7 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
                 {}
             )
         );
-        WatchUi.pushView(menu, new OptionDelegate(), WatchUi.SLIDE_IMMEDIATE);
-        return true;
-    }
-    
-    function onSelect() {
+        WatchUi.pushView(menu, new OptionDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
         return true;
     }
 
