@@ -1,0 +1,9 @@
+<strings>
+    <string id="AppName">Tir à l arc</string>
+    <string id="Options">options</string>
+    <string id="Chrono">Temps</string>
+    <string id="UnitSec">sec</string>
+    <string id="StartSignal">Signal de départ</string>
+    <string id="EndSignal">Signal de fin</string>
+    <string id="WarningSignal">Signal d'alerte</string>
+</strings>
