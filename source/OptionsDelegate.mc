@@ -13,15 +13,19 @@ class OptionDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onSelect(item) {
-        if (item.getId().equals("ArcTiming")){
-            var menu = new WatchUi.Menu2({:title=>Rez.Strings.Chrono});
-            menu.addItem(new MenuItem(Application.loadResource(Rez.Strings.NoTimer), "", 0, {}));
-            menu.addItem(new MenuItem("120 " + Application.loadResource(Rez.Strings.UnitSec), "", 120, {}));
-            menu.addItem(new MenuItem("240 " + Application.loadResource(Rez.Strings.UnitSec), "", 240, {}));
-            if (Storage.getValue("ArcTiming") == 0) { menu.setFocus(0);}
-            if (Storage.getValue("ArcTiming") == 120) { menu.setFocus(1);}
-            if (Storage.getValue("ArcTiming") == 240) { menu.setFocus(2);}
-            WatchUi.pushView(menu, new TimerDelegate(parentMenu, 0), WatchUi.SLIDE_IMMEDIATE);
+        switch (item.getId()) {
+            case "ArcTiming": {
+                var array = [[Application.loadResource(Rez.Strings.NoTimer), 0],
+                    ["120 " + Application.loadResource(Rez.Strings.UnitSec), 120],
+                    ["240 " + Application.loadResource(Rez.Strings.UnitSec), 240]];
+                var menu = new WatchUi.Menu2({:title=>Rez.Strings.Chrono});
+                for( var i = 0; i < array.size(); i++ ) {
+                    menu.addItem(new MenuItem(array[i][0], "", array[i][1], {}));
+                    if (Storage.getValue(item.getId()) == array[i][1]) { menu.setFocus(i);}
+                }
+                WatchUi.pushView(menu, new TimerDelegate(parentMenu, 0), WatchUi.SLIDE_IMMEDIATE);
+                break;
+            }
         }
     }
 }
