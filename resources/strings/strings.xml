@@ -7,4 +7,7 @@
     <string id="EndSignal">End Signal</string>
     <string id="WarningSignal">Warning Signal</string>
     <string id="NoTimer">Without Timer</string>
+    <string id="NoSignal">Without Signal</string>
+    <string id="Vibrate">Vibrate</string>
+    <string id="Tone">Tone</string>
 </strings>

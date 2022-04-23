@@ -10,39 +10,29 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onPreviousPage() {
-        var menu = new WatchUi.Menu2({:title=>Rez.Strings.AppName});
-        menu.addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.Chrono),
-                Storage.getValue("ArcTiming").toString() + " " + Application.loadResource(Rez.Strings.UnitSec),
-                "ArcTiming",
-                {}
-            )
-        );
-        menu.addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.StartSignal),
-                "??",
-                "ArcStartSignal",
-                {}
-            )
-        );
-        menu.addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.WarningSignal),
-                "??",
-                "ArcWarningSignal",
-                {}
-            )
-        );
-        menu.addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.EndSignal),
-                "??",
-                "ArcEndSignal",
-                {}
-            )
-        );
+        viewOptions();
+    }
+    
+    function viewOptions() {
+        var paramSignal = [
+                            [0, Application.loadResource(Rez.Strings.NoSignal)], 
+                            [1, Application.loadResource(Rez.Strings.Vibrate)], 
+                            [2, Application.loadResource(Rez.Strings.Tone)], 
+                            [3, Application.loadResource(Rez.Strings.Vibrate) + " + " + Application.loadResource(Rez.Strings.Tone)]
+                        ];
+        var menu = new OptionMenu({:title=>Rez.Strings.AppName}, 
+            [
+                ["ArcTiming", Application.loadResource(Rez.Strings.Chrono), 
+                    [
+                        [0, Application.loadResource(Rez.Strings.NoTimer)], 
+                        [120, "120 " + Application.loadResource(Rez.Strings.UnitSec)], 
+                        [240, "240 " + Application.loadResource(Rez.Strings.UnitSec)]
+                    ]
+                ],
+                ["ArcStartSignal", Application.loadResource(Rez.Strings.StartSignal), paramSignal],
+                ["ArcWarningSignal", Application.loadResource(Rez.Strings.WarningSignal), paramSignal],
+                ["ArcEndSignal", Application.loadResource(Rez.Strings.EndSignal), paramSignal]
+            ]);
         WatchUi.pushView(menu, new OptionDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
         return true;
     }

@@ -7,4 +7,7 @@
     <string id="EndSignal">Signal de fin</string>
     <string id="WarningSignal">Signal d'alerte</string>
     <string id="NoTimer">Sans Chrono</string>
+    <string id="NoSignal">Sans Signal</string>
+    <string id="Vibrate">Vibration</string>
+    <string id="Tone">Tonalité</string>
 </strings>
