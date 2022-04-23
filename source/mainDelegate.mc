@@ -9,6 +9,10 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
     
+    function onSelect() {
+        System.println("start");
+    }
+    
     function onPreviousPage() {
         viewOptions();
     }
