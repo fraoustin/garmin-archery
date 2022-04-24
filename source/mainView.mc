@@ -2,6 +2,7 @@ import Toybox.Graphics;
 import Toybox.WatchUi;
 using Toybox.Graphics as Gfx;
 import Toybox.Application.Storage;
+using Toybox.Application;
 
 
 class mainView extends WatchUi.View {
@@ -13,9 +14,8 @@ class mainView extends WatchUi.View {
     }
 
     function onShow() {
-        var round = Storage.getValue("ArcRound").size() + 1;
         myText = new WatchUi.Text({
-            :text=>"Round " + round,
+            :text=>"",
             :color=>Graphics.COLOR_BLACK,
             :font=>Graphics.FONT_LARGE,
             :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
@@ -32,6 +32,8 @@ class mainView extends WatchUi.View {
     function onUpdate(dc as Dc) as Void {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
+        var round = Storage.getValue("ArcRound").size() + 1;
+        myText.setText(Application.loadResource(Rez.Strings.Round) + " " + round);
         myText.draw(dc);
     }
 

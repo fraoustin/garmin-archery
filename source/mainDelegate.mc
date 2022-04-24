@@ -10,7 +10,9 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onSelect() {
-        System.println("start");
+        var mdl = timerModel(Storage.getValue("ArcTiming").toNumber());
+        WatchUi.pushView(new timerView(mdl), new timerDelegate(mdl), WatchUi.SLIDE_IMMEDIATE);
+        return true;
     }
     
     function onPreviousPage() {
