@@ -3,6 +3,7 @@ import Toybox.WatchUi;
 import Toybox.Application.Storage;
 using Toybox.Application;
 
+
 class mainDelegate extends WatchUi.BehaviorDelegate {
 
     function initialize() {
@@ -10,8 +11,9 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onSelect() {
-        var mdl = timerModel(Storage.getValue("ArcTiming").toNumber());
+        var mdl = new timerModel(Storage.getValue("ArcTiming").toNumber());
         WatchUi.pushView(new timerView(mdl), new timerDelegate(mdl), WatchUi.SLIDE_IMMEDIATE);
+        mdl.start();
         return true;
     }
     

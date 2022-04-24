@@ -25,7 +25,7 @@ class timerView extends WatchUi.View {
         timerText = new WatchUi.Text({
             :text=>"",
             :color=>Graphics.COLOR_BLACK,
-            :font=>Graphics.FONT_LARGE,
+            :font=>Graphics.FONT_NUMBER_THAI_HOT,
             :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
             :locY=>WatchUi.LAYOUT_VALIGN_CENTER
         });
@@ -35,7 +35,8 @@ class timerView extends WatchUi.View {
     function onUpdate(dc as Dc) as Void {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
-        timerText.setText(model.getValue());
+        timerText.setColor(model.getColor());
+        timerText.setText(model.getText());
         timerText.draw(dc);
     }
 }
@@ -50,7 +51,7 @@ class timerDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onSelect() {
-        model.start();
+        model.stop();
         return true;
     }
 
@@ -59,11 +60,12 @@ class timerDelegate extends WatchUi.BehaviorDelegate {
 class timerModel{
 
     var counter = 0;
+    var timer = 0;
     hidden var refreshTimer = new Timer.Timer();
 
     function initialize(tps) {
-        counter = tps;
-        BehaviorDelegate.initialize();
+        timer = tps;
+        counter = timer + 10;
     }
 
 	function start(){
@@ -84,7 +86,28 @@ class timerModel{
     }
 
     function getValue(){
-        return counter;
+        if (counter > timer){
+            return 0;
+        }
+        return counter - 10;
+    }
+
+    function getText(){
+        if (counter > timer){
+            var val = counter - timer;
+            return val.toString();
+        }
+        return counter.toString();
+    }
+
+    function getColor(){
+        if (counter > timer){
+            return Graphics.COLOR_DK_GRAY;
+        }
+        if (counter < 30){
+            return Graphics.COLOR_DK_RED;
+        }
+        return Graphics.COLOR_DK_GREEN;
     }
 
 }
