@@ -64,6 +64,8 @@ class timerDelegate extends WatchUi.BehaviorDelegate {
     
     function onSelect() {
         model.stop();
+        var round = Storage.getValue("ArcRound").size() + 1;
+        WatchUi.pushView(new ScoringMenu({:title=>Application.loadResource(Rez.Strings.Round) + " " + round}), new ScoringDelegate(), WatchUi.SLIDE_IMMEDIATE);
         return true;
     }
 
