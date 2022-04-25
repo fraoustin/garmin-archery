@@ -4,11 +4,13 @@ using Toybox.Graphics as Gfx;
 import Toybox.Application.Storage;
 using Toybox.Application;
 using Toybox.Timer as Timer;
+using Toybox.Attention as Attention;
 
 
 class timerView extends WatchUi.View {
 
     hidden var timerText;
+    hidden var roundText;
     var model;
 
     function initialize(mdl) {
@@ -29,6 +31,13 @@ class timerView extends WatchUi.View {
             :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
             :locY=>WatchUi.LAYOUT_VALIGN_CENTER
         });
+        roundText = new WatchUi.Text({
+            :text=>"",
+            :color=>Graphics.COLOR_WHITE,
+            :font=>Graphics.FONT_TINY,
+            :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+            :locY=>5
+        });
     }
 
     // Update the view
@@ -38,6 +47,9 @@ class timerView extends WatchUi.View {
         timerText.setColor(model.getColor());
         timerText.setText(model.getText());
         timerText.draw(dc);
+        var round = Storage.getValue("ArcRound").size() + 1;
+        roundText.setText(Application.loadResource(Rez.Strings.Round) + " " + round);
+        roundText.draw(dc);
     }
 }
 
@@ -78,6 +90,15 @@ class timerModel{
         if (counter == 0){
             stop();
         }
+        if (counter == timer){
+            notification("ArcStartSignal");
+        }
+        if (counter == 30){
+            notification("ArcWarningSignal");
+        }
+        if (counter == 0){
+            notification("ArcEndSignal");
+        }
 		WatchUi.requestUpdate();
     }
 
@@ -109,5 +130,30 @@ class timerModel{
         }
         return Graphics.COLOR_DK_GREEN;
     }
+
+    function notification(typ){
+        var t = Storage.getValue(typ);
+        if (t == 1){
+            vibrate(1500);
+        }
+        if (t == 2){
+            beep(Attention.TONE_LOUD_BEEP);
+        }
+        if (t == 3){
+            vibrate(1500);
+            beep(Attention.TONE_LOUD_BEEP);
+        }
+        
+    }
+
+	function vibrate(duration){
+		var vibrateData = [ new Attention.VibeProfile(  100, duration ) ];
+		Attention.vibrate( vibrateData );
+	}
+
+	function beep(tone){
+		Attention.playTone(tone);
+		return true;
+	}
 
 }

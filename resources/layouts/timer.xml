@@ -1,3 +1,4 @@
 <layout id="TimerLayout">
     <drawable class="Background" />
+    <drawable class="Areaoption" />
 </layout>
