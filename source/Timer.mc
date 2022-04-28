@@ -47,7 +47,7 @@ class timerView extends WatchUi.View {
         timerText.setColor(model.getColor());
         timerText.setText(model.getText());
         timerText.draw(dc);
-        var round = Storage.getValue("ArcRound").size() + 1;
+        var round = Storage.getValue("ArcRound").size();
         roundText.setText(Application.loadResource(Rez.Strings.Round) + " " + round);
         roundText.draw(dc);
     }
@@ -64,13 +64,15 @@ class timerDelegate extends WatchUi.BehaviorDelegate {
     
     function onSelect() {
         model.stop();
-        var round = Storage.getValue("ArcRound").size() + 1;
-        WatchUi.pushView(new ScoringMenu({:title=>Application.loadResource(Rez.Strings.Round) + " " + round}), new ScoringDelegate(), WatchUi.SLIDE_IMMEDIATE);
         return true;
     }
 
-    function onBack() {
-        return true;
+    // Disabled onBack ...
+    function onKey(keyEvent) {
+        if (keyEvent.getKey() == 5){
+            return true;
+        }
+        return false;
     }
 
 }
@@ -110,13 +112,18 @@ class timerModel{
 
     function stop(){
 		refreshTimer.stop();
+        var round = Storage.getValue("ArcRound");
+        round[round.size()-1][0] = getValue();
+        Storage.setValue("ArcRound", round);
+        var menu = new ScoringMenu({:title=>Application.loadResource(Rez.Strings.Round) + " " + round.size()});
+        WatchUi.pushView(menu, new ScoringDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
     }
 
     function getValue(){
         if (counter > timer){
             return 0;
         }
-        return counter - 10;
+        return timer - counter;
     }
 
     function getText(){
