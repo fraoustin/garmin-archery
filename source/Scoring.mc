@@ -36,4 +36,11 @@ class ScoringDelegate extends WatchUi.Menu2InputDelegate {
     function onSelect(item) {
         System.println(item.getId());
     }
+
+    function onBack(){
+        var newround = Storage.getValue("ArcRound");
+        newround.add([120, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
+        Storage.setValue("ArcRound", newround);
+        WatchUi.pushView(new mainView(), new mainDelegate(), WatchUi.SLIDE_IMMEDIATE);
+    }
 }

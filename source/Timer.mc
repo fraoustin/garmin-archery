@@ -69,6 +69,10 @@ class timerDelegate extends WatchUi.BehaviorDelegate {
         return true;
     }
 
+    function onBack() {
+        return true;
+    }
+
 }
 
 class timerModel{
