@@ -16,13 +16,21 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
         newround.add([Storage.getValue("ArcTiming").toNumber(), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
         Storage.setValue("ArcRound", newround);
         var mdl = new timerModel(Storage.getValue("ArcTiming").toNumber());
-        WatchUi.pushView(new timerView(mdl), new timerDelegate(mdl), WatchUi.SLIDE_IMMEDIATE);
-        mdl.start();
+        if (Storage.getValue("ArcTiming").toNumber() > 0) {
+            WatchUi.pushView(new timerView(mdl), new timerDelegate(mdl), WatchUi.SLIDE_IMMEDIATE);
+            mdl.start();
+        } else {
+            mdl.stop();
+        }
         return true;
     }
     
     function onPreviousPage() {
         viewOptions();
+    }
+    
+    function onNextPage() {
+        WatchUi.pushView(new StatOneView(), new StatOneDelegate(), WatchUi.SLIDE_IMMEDIATE);
     }
     
     function viewOptions() {

@@ -85,7 +85,11 @@ class timerModel{
 
     function initialize(tps) {
         timer = tps;
-        counter = timer + 10;
+        if (timer > 0 ){
+            counter = timer + 10;
+        } else {
+            counter = 0;
+        }
     }
 
 	function start(){
@@ -94,20 +98,24 @@ class timerModel{
 	}
 
 	function refresh(){
-		counter--;
-        if (counter == 0){
+        if (timer > 0){
+            counter--;
+            if (counter == 0){
+                stop();
+            }
+            if (counter == timer){
+                notification("ArcStartSignal");
+            }
+            if (counter == 30){
+                notification("ArcWarningSignal");
+            }
+            if (counter == 0){
+                notification("ArcEndSignal");
+            }
+            WatchUi.requestUpdate();
+        } else {
             stop();
         }
-        if (counter == timer){
-            notification("ArcStartSignal");
-        }
-        if (counter == 30){
-            notification("ArcWarningSignal");
-        }
-        if (counter == 0){
-            notification("ArcEndSignal");
-        }
-		WatchUi.requestUpdate();
     }
 
     function stop(){
