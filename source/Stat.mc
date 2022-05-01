@@ -26,20 +26,11 @@ class StatOneDelegate extends WatchUi.BehaviorDelegate {
 
 class StatOneView extends WatchUi.View {
 
-    hidden var myText;
-
     function initialize() {
         View.initialize();
     }
 
     function onShow() {
-        myText = new WatchUi.Text({
-            :text=>"Stat 1",
-            :color=>Graphics.COLOR_BLACK,
-            :font=>Graphics.FONT_LARGE,
-            :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
-            :locY=>WatchUi.LAYOUT_VALIGN_CENTER
-        });
     }
 
     function onLayout(dc as Dc) as Void {
@@ -48,9 +39,41 @@ class StatOneView extends WatchUi.View {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        // Call the parent onUpdate function to redraw the layout
+        var result = getResult();
+        var LAYOUT_VALIGN_MIDDLE = dc.getHeight() / 2;
         View.onUpdate(dc);
-        myText.draw(dc);
+        var text = new WatchUi.Text({
+            :text=>"620 / 720",
+            :color=>Graphics.COLOR_WHITE,
+            :font=>Graphics.FONT_MEDIUM,
+            :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+            :locY=>LAYOUT_VALIGN_MIDDLE -65
+        });
+        text.draw(dc);
+        text = new WatchUi.Text({
+            :text=>"moy 9.2",
+            :color=>Graphics.COLOR_WHITE,
+            :font=>Graphics.FONT_MEDIUM,
+            :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+            :locY=>LAYOUT_VALIGN_MIDDLE -35
+        });
+        text.draw(dc);
+        text = new WatchUi.Text({
+            :text=>"tps 58:01",
+            :color=>Graphics.COLOR_WHITE,
+            :font=>Graphics.FONT_MEDIUM,
+            :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+            :locY=>LAYOUT_VALIGN_MIDDLE +5
+        });
+        text.draw(dc);
+        text = new WatchUi.Text({
+            :text=>"moy  18 sec",
+            :color=>Graphics.COLOR_WHITE,
+            :font=>Graphics.FONT_MEDIUM,
+            :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+            :locY=>LAYOUT_VALIGN_MIDDLE +35
+        });
+        text.draw(dc);
     }
 
     // Called when this View is removed from the screen. Save the

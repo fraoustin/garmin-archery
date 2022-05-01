@@ -35,3 +35,20 @@ class Background extends Ui.Drawable {
     }
 
 }
+
+class BackgroundBlack extends Ui.Drawable {
+
+    function initialize() {
+        var dictionary = {
+            :identifier => "BackgroundBlack"
+        };
+
+        Drawable.initialize(dictionary);
+    }
+
+    function draw(dc) {
+        dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_BLACK);
+        dc.clear();
+    }
+
+}

@@ -1,3 +1,3 @@
 <layout id="StatLayout">
-    <drawable class="Background" />
+    <drawable class="BackgroundBlack" />
 </layout>
