@@ -144,12 +144,12 @@ class timerModel{
 
     function getColor(){
         if (counter > timer){
-            return Graphics.COLOR_DK_GRAY;
+            return Graphics.COLOR_LT_GRAY;
         }
         if (counter < 30){
-            return Graphics.COLOR_DK_RED;
+            return Graphics.COLOR_LT_RED;
         }
-        return Graphics.COLOR_DK_GREEN;
+        return Graphics.COLOR_LT_GREEN;
     }
 
     function notification(typ){
