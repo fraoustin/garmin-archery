@@ -80,8 +80,6 @@ class ScoringDelegateValue extends WatchUi.Menu2InputDelegate {
         var round = Storage.getValue("ArcRound");
         round[round.size()-1][1][item.getParam().toNumber()] = item.getId().toNumber();
         Storage.setValue("ArcRound", round);
-        System.println(round);
-        System.println(Storage.getValue("ArcRound"));
         parentMenu.getItem(item.getParam()).setSubLabel(item.getLabel() + " " + Application.loadResource(Rez.Strings.Arrow));
         parentMenu.setFocus(item.getParam());
         onBack();

@@ -4,6 +4,12 @@ import Toybox.Application.Storage;
 import Toybox.Graphics;
 using Toybox.Graphics as Gfx;
 using Toybox.Application;
+using Toybox.ActivityRecording;
+import Toybox.FitContributor;
+
+var session = null; 
+var totalArrowField = null;
+var totalScoreField = null;
 
 class mainDelegate extends WatchUi.BehaviorDelegate {
 
@@ -22,6 +28,18 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
         } else {
             mdl.stop();
         }
+        if (Toybox has :ActivityRecording) {                          // check device for activity recording
+            if ((session == null) || (session.isRecording() == false)) {
+                session = ActivityRecording.createSession({          // set up recording session
+                        :name=>"Arrow",                              // set session name
+                        :sport=>ActivityRecording.SPORT_SHOOTING,       // set sport type
+                        :subSport=>ActivityRecording.SUB_SPORT_GENERIC // set sub sport type
+                });
+                totalArrowField = session.createField("arrows", 1, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalScoreField = session.createField("scoring", 2, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                session.start();                                     // call start session
+            }
+        }   
         return true;
     }
     
@@ -34,7 +52,16 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onBack() {
-        System.println("out");
+        if (Toybox has :ActivityRecording) {                          // check device for activity recording
+            if ((session != null) && session.isRecording()) {
+                session.stop();                                      // stop the session
+                var result = getResult();
+                totalArrowField.setData(result[2]);
+                totalScoreField.setData(result[4]);
+                session.save();                                      // save the session
+                session = null;                                      // set session control variable to null
+            }
+        } 
 		Toybox.System.exit();
     }
     

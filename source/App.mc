@@ -24,7 +24,7 @@ class App extends Application.AppBase {
         if (Storage.getValue("ArcStartSignal") == null){
             Storage.setValue("ArcStartSignal", 0);
         }
-        Storage.setValue("ArcRound", []);
+        Storage.setValue("ArcRound", []); 
     }
 
     // onStop() is called when your application is exiting
