@@ -1,5 +1,7 @@
 <layout id="MainLayout">
     <drawable class="Background" />
     <drawable class="Areaoption" />
+    <drawable class="Areastat" />
     <label x="center" y="5" text="@Strings.Options" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_TINY"/>
+    <label x="center" y="bottom" text="@Strings.Stats" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_TINY"/>
 </layout>

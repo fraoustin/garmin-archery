@@ -1,6 +1,7 @@
 <strings>
     <string id="AppName">Archery</string>
     <string id="Options">options</string>
+    <string id="Stats">stat</string>
     <string id="Chrono">Timer</string>
     <string id="UnitSec">sec</string>
     <string id="StartSignal">Start Signal</string>
@@ -13,4 +14,5 @@
     <string id="Round">Round</string>
     <string id="Point">Point</string>
     <string id="Arrow">Arrow(s)</string>
+    <string id="Mean">Mean</string>
 </strings>

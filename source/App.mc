@@ -41,18 +41,3 @@ class App extends Application.AppBase {
 function getApp() as App {
     return Application.getApp() as App;
 }
-
-function getResult() as App {
-    var rounds = Storage.getValue("ArcRound");
-    // scoring = [time, rounds, arrows, [number of 10+, number of 10, number of 9, number of 8, ... , number of 1]  
-    var scoring = [0, 0, 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];   
-    for( var i = 0; i < rounds.size(); i++ ) {
-        scoring[0] = scoring[0] + rounds[0];
-        scoring[1] = scoring[1] + 1;   
-        for( var j = 0; j < rounds[1].size(); j++ ) {
-            scoring[3][j] = scoring[3][j] + rounds[1][j];
-            scoring[2] = scoring[2] + rounds[1][j];            
-        }
-    }
-    return scoring;
-}

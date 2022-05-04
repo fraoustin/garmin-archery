@@ -33,6 +33,11 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
         WatchUi.pushView(new StatOneView(), new StatOneDelegate(), WatchUi.SLIDE_IMMEDIATE);
     }
     
+    function onBack() {
+        System.println("out");
+		Toybox.System.exit();
+    }
+    
     function viewOptions() {
         var paramSignal = [
                             [0, Application.loadResource(Rez.Strings.NoSignal)], 

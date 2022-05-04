@@ -19,6 +19,23 @@ class Areaoption extends Ui.Drawable {
 
 }
 
+class Areastat extends Ui.Drawable {
+
+    function initialize() {
+        var dictionary = {
+            :identifier => "Areastat"
+        };
+
+        Drawable.initialize(dictionary);
+    }
+
+    function draw(dc) {
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
+        dc.fillRectangle(0, dc.getHeight()-35, dc.getWidth(), 35);
+    }
+
+}
+
 class Background extends Ui.Drawable {
 
     function initialize() {

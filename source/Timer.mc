@@ -147,9 +147,9 @@ class timerModel{
             return Graphics.COLOR_LT_GRAY;
         }
         if (counter < 30){
-            return Graphics.COLOR_LT_RED;
+            return Graphics.COLOR_RED;
         }
-        return Graphics.COLOR_LT_GREEN;
+        return Graphics.COLOR_GREEN;
     }
 
     function notification(typ){
