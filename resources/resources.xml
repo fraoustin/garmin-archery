@@ -1,0 +1,33 @@
+<resources>
+	<bitmap id="application_launcher_icon" filename="drawables/launcher_icon.png" />
+
+	<fitContributions>
+		<fitField
+			id="1"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.Arrow"
+			unitLabel="" />
+		<fitField
+			id="2"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.Point"
+			unitLabel="" />
+		<fitField
+			id="3"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.Mean"
+			unitLabel="" />
+	</fitContributions>
+</resources>

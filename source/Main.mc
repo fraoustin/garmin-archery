@@ -10,6 +10,7 @@ import Toybox.FitContributor;
 var session = null; 
 var totalArrowField = null;
 var totalScoreField = null;
+var meanScoreField = null;
 
 class mainDelegate extends WatchUi.BehaviorDelegate {
 
@@ -35,8 +36,9 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
                         :sport=>ActivityRecording.SPORT_SHOOTING,       // set sport type
                         :subSport=>ActivityRecording.SUB_SPORT_GENERIC // set sub sport type
                 });
-                totalArrowField = session.createField("arrows", 1, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
-                totalScoreField = session.createField("scoring", 2, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowField = session.createField(Ui.loadResource(Rez.Strings.Arrow), 1, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalScoreField = session.createField(Ui.loadResource(Rez.Strings.Point), 2, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                meanScoreField = session.createField(Ui.loadResource(Rez.Strings.Mean), 3, FitContributor.DATA_TYPE_FLOAT, {:mesgType => FitContributor.MESG_TYPE_SESSION});
                 session.start();                                     // call start session
             }
         }   
@@ -58,6 +60,11 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
                 var result = getResult();
                 totalArrowField.setData(result[2]);
                 totalScoreField.setData(result[4]);
+                var mean = 0;
+                if (result[2] > 0) {
+                    mean = result[4].toFloat()/result[2].toFloat();
+                }
+                meanScoreField.setData(mean.format("%.2f"));
                 session.save();                                      // save the session
                 session = null;                                      // set session control variable to null
             }
