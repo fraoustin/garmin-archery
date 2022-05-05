@@ -10,7 +10,7 @@
 			sortOrder="5"
 			precision="0"
 			dataLabel="@Strings.Arrow"
-			unitLabel="" />
+			unitLabel="@Strings.Arrow" />
 		<fitField
 			id="2"
 			displayInChart="false"
@@ -19,7 +19,7 @@
 			sortOrder="5"
 			precision="0"
 			dataLabel="@Strings.Point"
-			unitLabel="" />
+			unitLabel="@Strings.Point" />
 		<fitField
 			id="3"
 			displayInChart="false"
@@ -28,6 +28,6 @@
 			sortOrder="5"
 			precision="0"
 			dataLabel="@Strings.Mean"
-			unitLabel="" />
+			unitLabel="@Strings.Point" />
 	</fitContributions>
 </resources>

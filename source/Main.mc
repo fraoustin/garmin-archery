@@ -36,12 +36,12 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
                         :sport=>ActivityRecording.SPORT_SHOOTING,       // set sport type
                         :subSport=>ActivityRecording.SUB_SPORT_GENERIC // set sub sport type
                 });
-                totalArrowField = session.createField(Ui.loadResource(Rez.Strings.Arrow), 1, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
-                totalScoreField = session.createField(Ui.loadResource(Rez.Strings.Point), 2, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
-                meanScoreField = session.createField(Ui.loadResource(Rez.Strings.Mean), 3, FitContributor.DATA_TYPE_FLOAT, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowField = session.createField(Application.loadResource(Rez.Strings.Arrow), 1, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalScoreField = session.createField(Application.loadResource(Rez.Strings.Point), 2, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                meanScoreField = session.createField(Application.loadResource(Rez.Strings.Mean), 3, FitContributor.DATA_TYPE_DOUBLE, {:mesgType => FitContributor.MESG_TYPE_SESSION});
                 session.start();                                     // call start session
             }
-        }   
+        }
         return true;
     }
     
@@ -56,20 +56,33 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
     function onBack() {
         if (Toybox has :ActivityRecording) {                          // check device for activity recording
             if ((session != null) && session.isRecording()) {
-                session.stop();                                      // stop the session
-                var result = getResult();
-                totalArrowField.setData(result[2]);
-                totalScoreField.setData(result[4]);
-                var mean = 0;
-                if (result[2] > 0) {
-                    mean = result[4].toFloat()/result[2].toFloat();
-                }
-                meanScoreField.setData(mean.format("%.2f"));
-                session.save();                                      // save the session
-                session = null;                                      // set session control variable to null
+            } else {
+                Toybox.System.exit();
             }
-        } 
-		Toybox.System.exit();
+        } else {
+            Toybox.System.exit();
+        }
+        
+        
+        var menu = new WatchUi.Menu2({:title=>Application.loadResource(Rez.Strings.AppName)});
+        menu.addItem(
+            new MenuItem(
+                Application.loadResource(Rez.Strings.Save),
+                "",
+                1,
+                {}
+            )
+        );
+        menu.addItem(
+            new MenuItem(
+                Application.loadResource(Rez.Strings.Restart),
+                "",
+                2,
+                {}
+            )
+        );
+        WatchUi.pushView(menu, new SaveInputDelegate(), WatchUi.SLIDE_IMMEDIATE);
+        return true;
     }
     
     function viewOptions() {
@@ -144,4 +157,30 @@ class mainView extends WatchUi.View {
     function onHide() as Void {
     }
 
+}
+
+
+class SaveInputDelegate extends WatchUi.Menu2InputDelegate  {
+    function initialize() {
+        Menu2InputDelegate .initialize();
+    }
+
+    function onSelect(item) {
+        if (item.getId() == 1) {
+            session.stop();                                      // stop the session
+            var result = getResult();
+            totalArrowField.setData(result[2]);
+            totalScoreField.setData(result[4]);
+            var mean = 0;
+            if (result[2] > 0) {
+                mean = result[4].toFloat()/result[2].toFloat();
+            }
+            meanScoreField.setData(mean.format("%.2f").toFloat());
+            session.save();                                      // save the session
+            session = null;                                      // set session control variable to null
+            Toybox.System.exit();
+        } else {
+            WatchUi.pushView(new mainView(), new mainDelegate(), WatchUi.SLIDE_IMMEDIATE);
+        }
+    }
 }

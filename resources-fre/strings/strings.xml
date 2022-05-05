@@ -15,4 +15,6 @@
     <string id="Point">Point</string>
     <string id="Arrow">Flèche(s)</string>
     <string id="Mean">Moy</string>
+    <string id="Save">Enregistrer</string>
+    <string id="Restart">Reprendre</string>
 </strings>

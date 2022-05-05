@@ -15,4 +15,6 @@
     <string id="Point">Point</string>
     <string id="Arrow">Arrow(s)</string>
     <string id="Mean">Mean</string>
+    <string id="Save">Save</string>
+    <string id="Restart">Restart</string>
 </strings>
