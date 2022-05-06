@@ -11,6 +11,17 @@ var session = null;
 var totalArrowField = null;
 var totalScoreField = null;
 var meanScoreField = null;
+var totalArrowTenMore = null;
+var totalArrowTen = null;
+var totalArrowNine = null;
+var totalArrowHeight = null;
+var totalArrowSeven = null;
+var totalArrowSix = null;
+var totalArrowFive = null;
+var totalArrowFour = null;
+var totalArrowThree = null;
+var totalArrowTwo = null;
+var totalArrowOne = null;
 
 class mainDelegate extends WatchUi.BehaviorDelegate {
 
@@ -38,7 +49,18 @@ class mainDelegate extends WatchUi.BehaviorDelegate {
                 });
                 totalArrowField = session.createField(Application.loadResource(Rez.Strings.Arrow), 1, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
                 totalScoreField = session.createField(Application.loadResource(Rez.Strings.Point), 2, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
-                meanScoreField = session.createField(Application.loadResource(Rez.Strings.Mean), 3, FitContributor.DATA_TYPE_DOUBLE, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                meanScoreField = session.createField(Application.loadResource(Rez.Strings.Mean), 3, FitContributor.DATA_TYPE_FLOAT, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowTenMore = session.createField(Application.loadResource(Rez.Strings.NumberOfTenMore), 4, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowTen = session.createField(Application.loadResource(Rez.Strings.NumberOfTen), 5, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowNine = session.createField(Application.loadResource(Rez.Strings.NumberOfNine), 6, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowHeight = session.createField(Application.loadResource(Rez.Strings.NumberOfHeight), 7, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowSeven = session.createField(Application.loadResource(Rez.Strings.NumberOfSeven), 8, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowSix = session.createField(Application.loadResource(Rez.Strings.NumberOfSix), 9, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowFive = session.createField(Application.loadResource(Rez.Strings.NumberOfFive), 10, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowFour = session.createField(Application.loadResource(Rez.Strings.NumberOfFour), 11, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowThree = session.createField(Application.loadResource(Rez.Strings.NumberOfThree), 12, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowTwo = session.createField(Application.loadResource(Rez.Strings.NumberOfTwo), 13, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
+                totalArrowOne = session.createField(Application.loadResource(Rez.Strings.NumberOfTOne), 14, FitContributor.DATA_TYPE_UINT32, {:mesgType => FitContributor.MESG_TYPE_SESSION});
                 session.start();                                     // call start session
             }
         }
@@ -169,6 +191,7 @@ class SaveInputDelegate extends WatchUi.Menu2InputDelegate  {
         if (item.getId() == 1) {
             session.stop();                                      // stop the session
             var result = getResult();
+            var score = result[3];
             totalArrowField.setData(result[2]);
             totalScoreField.setData(result[4]);
             var mean = 0;
@@ -176,6 +199,17 @@ class SaveInputDelegate extends WatchUi.Menu2InputDelegate  {
                 mean = result[4].toFloat()/result[2].toFloat();
             }
             meanScoreField.setData(mean.format("%.2f").toFloat());
+            totalArrowTenMore = score[0];
+            totalArrowTen = score[1];
+            totalArrowNine = score[2];
+            totalArrowHeight = score[3];
+            totalArrowSeven = score[4];
+            totalArrowSix = score[5];
+            totalArrowFive = score[6];
+            totalArrowFour = score[7];
+            totalArrowThree = score[8];
+            totalArrowTwo = score[9];
+            totalArrowOne = score[10];
             session.save();                                      // save the session
             session = null;                                      // set session control variable to null
             Toybox.System.exit();

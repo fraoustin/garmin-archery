@@ -17,4 +17,15 @@
     <string id="Mean">Mean</string>
     <string id="Save">Save</string>
     <string id="Restart">Restart</string>
+    <string id="NumberOfTenMore">Number of 10 +</string>
+    <string id="NumberOfTen">Number of 10</string>
+    <string id="NumberOfNine">Number of 9</string>
+    <string id="NumberOfHeight">Number of 8</string>
+    <string id="NumberOfSeven">Number of 7</string>
+    <string id="NumberOfSix">Number of 6</string>
+    <string id="NumberOfFive">Number of 5</string>
+    <string id="NumberOfFour">Number of 4</string>
+    <string id="NumberOfThree">Number of 3</string>
+    <string id="NumberOfTwo">Number of 2</string>
+    <string id="NumberOfTOne">Number of 2</string>
 </strings>

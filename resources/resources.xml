@@ -29,5 +29,104 @@
 			precision="0"
 			dataLabel="@Strings.Mean"
 			unitLabel="@Strings.Point" />
+		<fitField
+			id="4"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfTenMore"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="5"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfTen"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="6"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfNine"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="7"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfHeight"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="8"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfSeven"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="9"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfSix"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="10"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfFive"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="11"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfFour"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="12"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfThree"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="13"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfTwo"
+			unitLabel="@Strings.Arrow" />
+		<fitField
+			id="14"
+			displayInChart="false"
+			displayInActivityLaps="false"
+			displayInActivitySummary="true"
+			sortOrder="5"
+			precision="0"
+			dataLabel="@Strings.NumberOfTOne"
+			unitLabel="@Strings.Arrow" />
 	</fitContributions>
 </resources>
